@@ -1,0 +1,1 @@
+image-registry.openshift-image-registry.svc:5000/demo/secret-extractor:latest
