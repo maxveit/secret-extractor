@@ -15,10 +15,10 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: icd-sidecar
+  name: secret-extractor
 spec:
   containers:
-  - name: icd-sidecar
+  - name: secret-extractor
     image: image-registry.openshift-image-registry.svc:5000/demo/secret-extractor:latest
     ports:
       - containerPort: 6830
@@ -27,8 +27,8 @@ spec:
       - name: redis-connection
         mountPath: /usr/connection
         readOnly: true
-      - mountPath: /password
-          name: password-emptydir
+      - name: password-emptydir
+        mountPath: /password
   volumes:
   - name: redis-connection
     secret:
