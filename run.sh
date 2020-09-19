@@ -12,3 +12,5 @@ touch /password/test
 cp /tmp/.env /password/.env
 
 cat /password/.env
+
+ls -la /password/
