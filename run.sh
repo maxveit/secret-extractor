@@ -11,6 +11,7 @@ sed -i 's/PASSWORD/'"$PASSWORD"'/g' /tmp/.env
 ls -la /
 ls -la /password/
 
+touch /password/test
 cp /tmp/.env /password/.env
 
 cat /password/.env
