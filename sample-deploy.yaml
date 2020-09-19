@@ -20,19 +20,24 @@ spec:
   containers:
   - name: secret-extractor
     image: image-registry.openshift-image-registry.svc:5000/demo/secret-extractor:latest
-    ports:
-      - containerPort: 6830
+    env:
+    - name: SECRET_PATH
+      value: .rediss.authentication.password
+    - name: MOUNT_PATH
+      value: /usr/connection/connection
+    - name: ENV_NAME
+      value: QUARKUS_REDIS_PASSWORD
     imagePullPolicy: Always
     volumeMounts:
       - name: redis-connection
         mountPath: /usr/connection
         readOnly: true
-      - name: password-emptydir
-        mountPath: /password
+      - name: secrets-emptydir
+        mountPath: /secrets
   volumes:
   - name: redis-connection
     secret:
       secretName: stock-quote-redis
       defaultMode: 400
-  - name: password-emptydir
+  - name: secrets-emptydir
     emptyDir: {}
